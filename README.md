@@ -1,5 +1,8 @@
 # 🐍 GitHub Contribution Snake Animation
 
+[![Generate Snake Animation](https://github.com/alokupadhyaydevops/snake-animation/actions/workflows/snake.yml/badge.svg)](https://github.com/alokupadhyaydevops/snake-animation/actions/workflows/snake.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A professional GitHub Actions automation that generates an animated snake eating your GitHub contribution graph. Perfect for adding visual appeal to your GitHub profile README.
 
 ![Snake Animation](https://raw.githubusercontent.com/alokupadhyaydevops/snake-animation/output/github-contribution-grid-snake-dark.svg)
@@ -84,6 +87,7 @@ The workflow is located at `.github/workflows/snake.yml`. Key configurations:
 - **Schedule**: Runs daily at midnight UTC (customizable via cron expression)
 - **Branch**: Deploys to `output` branch (can be changed to `gh-pages`)
 - **Theme**: Dark mode palette by default (configurable in workflow file)
+- **Concurrency**: Only one workflow run executes at a time; new runs cancel in-progress ones
 
 ### Customizing the Schedule
 
@@ -93,6 +97,15 @@ Edit the cron expression in `.github/workflows/snake.yml`:
 schedule:
   - cron: "0 0 * * *"  # Runs at midnight UTC daily
 ```
+
+## 🛠️ Troubleshooting
+
+| Issue | Cause | Fix |
+|-------|-------|-----|
+| Workflow fails with `403` error | Actions don't have write permission | Go to **Settings → Actions → General** and set **Workflow permissions** to *Read and write* |
+| SVG not updating on profile | GitHub caches raw URLs | Append `?v=1` (increment each time) or wait for cache to expire (~5 min) |
+| `output` branch not created | Workflow hasn't run yet | Trigger it manually via **Actions → Run workflow** |
+| Animation shows no contributions | Wrong `github_user_name` | The workflow auto-uses the repo owner; ensure the repo belongs to your account |
 
 ## 📁 Project Structure
 
