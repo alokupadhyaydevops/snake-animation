@@ -13,6 +13,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: snake-generation
+  cancel-in-progress: true
+
 jobs:
   generate:
     runs-on: ubuntu-latest
